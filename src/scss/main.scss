@@ -1,6 +1,7 @@
 @use "./variables" as *;
 @use "./typography" as *;
 @use "./global" as *;
+@use "./app" as *;
 
-@use "./components/quizStarter";
+@use "./components/quiz";
 
