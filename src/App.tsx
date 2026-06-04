@@ -10,9 +10,8 @@ function App() {
         <div className="quiz-container">
           <div className="container">
             <h1>What will you listen to today?</h1>
-            <p>Take the quiz and find what album matches your mood</p>
+            <p>Not sure what to listen to? Let your mood decide.</p>
             <button className="start-btn" onClick={() => setShowQuiz(true)}>
-              {" "}
               Start Quiz
             </button>
           </div>

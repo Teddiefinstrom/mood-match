@@ -7,33 +7,37 @@ const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedTags, setSelectedTags] = useState<AlbumTag[]>([]);
 
-  console.log(selectedTags)
+  const currentQuestion = questions[currentQuestionIndex];
+
+  if (!currentQuestion) {
+    return <QuizResult selectedTags={selectedTags} />;
+  }
 
   return (
-    <>
-      {questions[currentQuestionIndex] ? (
-        <div className="quiz-container">
-          <div className="container">
-            <h2>{questions[currentQuestionIndex].id}</h2>
-            <p>{questions[currentQuestionIndex].question}</p>
-            {questions[currentQuestionIndex].options.map((opt) => (
-              <button
-                key={opt.text}
-                className="options-btn"
-                onClick={() => {
-                  setSelectedTags([...selectedTags, ...opt.albumTags]);
-                  setCurrentQuestionIndex(currentQuestionIndex + 1);
-                }}
-              >
-                {opt.text}
-              </button>
-            ))}
-          </div>
+    <div className="quiz-container">
+      <div className="container">
+        <p className="question-count">
+          Question {currentQuestionIndex + 1} / {questions.length}
+        </p>
+
+        <h2>{currentQuestion.question}</h2>
+
+        <div className="options-wrapper">
+          {currentQuestion.options.map((opt) => (
+            <button
+              key={opt.text}
+              className="options-btn"
+              onClick={() => {
+                setSelectedTags([...selectedTags, ...opt.albumTags]);
+                setCurrentQuestionIndex(currentQuestionIndex + 1);
+              }}
+            >
+              {opt.text}
+            </button>
+          ))}
         </div>
-      ) : (
-        <QuizResult selectedTags={selectedTags} />
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 
